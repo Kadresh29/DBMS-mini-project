@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Xpenza</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-logo">
+      <div class="logo-text">Xpenza</div>
+    </div>
+    
+    <h1 class="auth-title">Create Account</h1>
+    <p class="auth-subtitle">Fill in your details to create a new account</p>
+    
+    <form class="auth-form" id="register-form">
+      <div class="form-group">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" class="form-control" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-control" required>
+        <div class="form-text">Password must be at least 8 characters long</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="confirm-password" class="form-label">Confirm Password</label>
+        <input type="password" id="confirm-password" class="form-control" required>
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+    </form>
+    
+    <div class="auth-footer">
+      <p>Already have an account? <a href="index.html">Login</a></p>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

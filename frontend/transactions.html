@@ -1,0 +1,193 @@
+<!-- Main Content -->
+<div class="main-content">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Transactions List</h3>
+      <button id="add-transaction-btn" class="btn btn-primary">Add New Transaction</button>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+    </div>
+    <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <a href="dashboard.html" class="sidebar-logo">Xpenza</a>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+      <li class="actie"><a href="transactions.html"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+      <li><a href="budgets.html"><i class="fas fa-wallet"></i> Budgets</a></li>
+      <li><a href="recurring-payments.html"><i class="fas fa-sync-alt"></i> Recurring Payments</a></li>
+      <li><a href="alerts.html"><i class="fas fa-bell"></i> Alerts</a></li>
+    </ul>
+  </div>
+
+    
+    <!-- Filters -->
+    <div class="filters">
+      <div class="filter-item">
+        <label for="date-filter" class="form-label">Date Range</label>
+        <select id="date-filter" class="form-select">
+          <option value="all">All Time</option>
+          <option value="today">Today</option>
+          <option value="week">This Week</option>
+          <option value="month">This Month</option>
+          <option value="custom">Custom Range</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label for="category-filter" class="form-label">Category</label>
+        <select id="category-filter" class="form-select">
+          <option value="all">All Categories</option>
+          <option value="food">Food</option>
+          <option value="transport">Transportation</option>
+          <option value="shopping">Shopping</option>
+          <option value="utilities">Utilities</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="education">Education</option>
+          <option value="others">Others</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label for="payment-filter" class="form-label">Payment Method</label>
+        <select id="payment-filter" class="form-select">
+          <option value="all">All Methods</option>
+          <option value="cash">Cash</option>
+          <option value="credit">Credit Card</option>
+          <option value="debit">Debit Card</option>
+          <option value="upi">UPI</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Transactions Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Payment Method</th>
+          <th>Amount</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="transactions-list">
+        <tr>
+          <td>18/04/2025</td>
+          <td>Grocery Shopping</td>
+          <td>Food</td>
+          <td>Credit Card</td>
+          <td>$85.40</td>
+          <td>
+            <button class="btn btn-primary edit-transaction" data-id="1"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger delete-transaction" data-id="1"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td>17/04/2025</td>
+          <td>Netflix Subscription</td>
+          <td>Entertainment</td>
+          <td>Credit Card</td>
+          <td>$15.99</td>
+          <td>
+            <button class="btn btn-primary edit-transaction" data-id="2"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger delete-transaction" data-id="2"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td>15/04/2025</td>
+          <td>Gas Station</td>
+          <td>Transportation</td>
+          <td>Debit Card</td>
+          <td>$45.00</td>
+          <td>
+            <button class="btn btn-primary edit-transaction" data-id="3"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger delete-transaction" data-id="3"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td>12/04/2025</td>
+          <td>Restaurant</td>
+          <td>Food</td>
+          <td>Cash</td>
+          <td>$63.20</td>
+          <td>
+            <button class="btn btn-primary edit-transaction" data-id="4"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger delete-transaction" data-id="4"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td>10/04/2025</td>
+          <td>Amazon Purchase</td>
+          <td>Shopping</td>
+          <td>Credit Card</td>
+          <td>$127.50</td>
+          <td>
+            <button class="btn btn-primary edit-transaction" data-id="5"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger delete-transaction" data-id="5"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Add Transaction Modal -->
+<div class="modal" id="transaction-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">Add New Transaction</h3>
+      <button class="modal-close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="transaction-form">
+        <div class="form-group">
+          <label for="transaction-amount" class="form-label">Amount</label>
+          <input type="number" id="transaction-amount" class="form-control" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label for="transaction-date" class="form-label">Date</label>
+          <input type="date" id="transaction-date" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="transaction-description" class="form-label">Description</label>
+          <input type="text" id="transaction-description" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="transaction-category" class="form-label">Category</label>
+          <select id="transaction-category" class="form-select" required>
+            <option value="">Select Category</option>
+            <option value="food">Food</option>
+            <option value="transport">Transportation</option>
+            <option value="shopping">Shopping</option>
+            <option value="utilities">Utilities</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="education">Education</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="transaction-payment" class="form-label">Payment Method</label>
+          <select id="transaction-payment" class="form-select" required>
+            <option value="">Select Payment Method</option>
+            <option value="cash">Cash</option>
+            <option value="credit">Credit Card</option>
+            <option value="debit">Debit Card</option>
+            <option value="upi">UPI</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" id="transaction-cancel">Cancel</button>
+      <button class="btn btn-primary" id="transaction-save">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/transactions.js"></script>
+</body>
+</html>
